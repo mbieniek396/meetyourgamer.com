@@ -1,0 +1,23 @@
+{% extends "main/startpage.html" %}
+
+
+{% block body%}
+<form method="post" action="/register">
+    {% csrf_token %}
+    <input id="RegLogin" name="login" type="text" placeholder="Login" required>
+    <label class="hidden" id="RegLoginCH" for="RegLogin">Taki login już istnieje!</label>
+    <input id="Regemail" name="Regemail" type="mail" placeholder="Email" required>
+    <label class="hidden" id="RegemailCH" for="Regemail">Przykład: nazwa@domena.pl!</label>
+    <input id="REGpassword" name="REGpassword" type="password" placeholder="Password" required>
+    <input id="REGpassword2" name="REGpassword2" type="password" placeholder="Confirm Password" required>
+    <label class="hidden" id="REGpasswdCheck" for="REGpassword2">Hasła muszą być takie same!</label>
+    <button id="RegSubmit" type="submit">Zarejestruj</button>
+    <p id="XD"></p>
+</form>
+<script>
+    const red = "red";
+    var logins = "{{loginsA}}";
+</script>
+{% load static %}
+<script src="{% static 'registerValidation.js'%}"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    
+    {% if possible|length > 0 %}
+        <h1>Oto gracze z którymi potencjalnie możesz pograć</h1>
+        {%for fr in possible%}
+            <a href="/profile/{{fr.user.username}}" class="elem">
+                <img class="gamePicSmall" src="{{fr.profilePicture}}"><p>{{fr.user.username}}</p>
+            </a>
+        {%endfor%}
+    {% else %}
+        {%if reserved|length > 0%}
+            <h1>Nie znaleziono graczy grających w twoje gry w twoich przedziałach czasowych</h1>
+            <h1>Oto gracze grający w to co ty, w innych przedziałach czasowych</h1>
+            {%for fr in reserved%}
+                <a href="/profile/{{fr.user.username}}" class="elem">
+                    <img class="gamePicSmall" src="{{fr.profilePicture}}"><p>{{fr.user.username}}</p>
+                </a>
+            {%endfor%}
+        {%else%}
+            {% if ytnyg|length > 0%}
+                <h1>Nie znaleziono graczy grających w twoje gry</h1>
+                <h1>Oto gracze grający w inne gry, w twoich przedziałach czasowych</h1>
+                {%for fr in ytnyg%}
+                    <a href="/profile/{{fr.user.username}}" class="elem">
+                        <img class="gamePicSmall" src="{{fr.profilePicture}}"><p>{{fr.user.username}}</p>
+                    </a>
+                {%endfor%}
+            {%else%}
+                {% if others|length > 0%}
+                    <h1>Nie znaleziono graczy grających w twoje gry, ani w twoim przedziale czasowym</h1>
+                    <h1>Oto inni gracze, może znajdziesz coś ciekawego :D</h1>
+                    {%for fr in others%}
+                        <a href="/profile/{{fr.user.username}}" class="elem">
+                            <img class="gamePicSmall" src="{{fr.profilePicture}}"><p>{{fr.user.username}}</p>
+                        </a>
+                    {%endfor%}
+                {%else%}
+                    <h1>Wygląda na to że nie grasz w żadne gry, możesz dodać je <a href="/games">tutaj</a></h1>
+                {%endif%}
+            {%endif%}
+        {%endif%}
+    {%endif%}
+
+    
+{%endblock%}

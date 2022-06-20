@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% block body %}
+
+    <form method="post">
+        {% csrf_token %}
+        <!--<input class="hide" type="checkbox" id="chb"></button>
+        <label for="chb" class="chbL">Dziala</label>-->
+        
+        {% if not admin%}
+            {% if user.is_staff%}
+                <button type="submit" name="admin" value="admin">AdminView</button>
+            {%endif%}
+            <button type="submit" name="all" value="all">Wszystkie gry</button>
+            <button type="submit" name="your" value="your">Twoje gry</button>
+        {%else%}
+            <button type="submit" name="normal" value="normal">Powrót</button>
+        {%endif%}
+        {% for g in UserGames%}
+            <h3>{{g.name}}</h3>
+            <img class="gamePic" src="{{g.picture}}">
+            <h3>Ranks: {{g.ranking}}</h3>
+            {%if admin%}
+                <button type="submit" name="del" value="{{g.id}}">Usuń</button>
+                <button type="submit" name="edit" value="{{g.id}}">Edytuj</button>
+            {%else%}
+                <button type="submit" name="dGame" value="{{g.id}}">Usun z gier w które grasz</button>
+            {%endif%}
+        {%endfor%}
+        
+        {% for g in games%}
+            <h3>{{g.name}}</h3>
+            <img class="gamePic" src="{{g.picture}}">
+            <h3>Ranks: {{g.ranking}}</h3>
+            {%if admin%}
+                <button type="submit" name="del" value="{{g.id}}">Usuń</button>
+                <button type="submit" name="edit" value="{{g.gameformula.id}}">Edytuj</button>
+            {%else%}
+                <button type="submit" name="add" value="{{g.id}}">Dodaj do gier w które grasz</button>
+            {%endif%}
+        {%endfor%}
+    </form>
+{%endblock%}

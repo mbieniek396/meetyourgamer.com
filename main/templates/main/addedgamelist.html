@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block body %}
+
+    {%if user.is_staff%}
+        <a href="/staff/gameformulas">Wnioski o nowe gry</a>
+    {%endif%}
+
+    {% if si %}
+        {% for formula in user.gameformula_set.all%}
+            <a href="/formulas/{{formula.id}}" class="elem">
+                <h2>#{{formula.id}}</h2>
+                <h3>{{formula.game.name}}</h3>
+                <img class="gamePic" src="{{formula.game.picture}}">
+                <p>{{formula.status}}</p>
+                <p>{{formula.signDate}}</p>
+            </a>
+        {%endfor%}
+    {% else%}
+            <h2>Wygląda na to że nie masz żadnych złożonych wniosków nowych gier</h2>
+            <h2>Możesz dodać wniosek klikając poniżej</h2>
+            <a href="/addgame">Dodaj wniosek o nową gre</a>
+    {%endif%}
+{%endblock%}

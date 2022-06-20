@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        <h1>{{game.name}}</h1>
+        <img class="gamePic" src="{{game.picture}}">
+        {% if ranks %}
+            <label for="ranking">Wybierz twoją rangę</label>
+            <select name="rank" required>
+                {% for rank in ranks%}
+                    <option value="{{rank}}">{{rank}}</option>
+                {%endfor%}
+            </select>
+        {% endif %}
+        <button type="submit">Dodaj do twoich gier</button>
+        <button type="submit" name="back" value="back">Powrót</button>
+    </form>
+{%endblock%}

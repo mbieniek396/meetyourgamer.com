@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <h1>Tytuł gry: {{wniosek.game.name}}</h1>
+    <h2>link do gry: {{wniosek.gameLink}}</h2>
+    <h2>System rankingowy gry: {{wniosek.rankingSystem}}</h2>
+    <h2>Status wniosku: {{wniosek.status}}</h2>
+    {% if wniosek.why %}<h2>Powód odrzucenia wniosku: {{wniosek.why}}</h2>{%endif%}
+    {%if wniosek.status == "zaakceptowany"%}
+        <h1>Gra utworzona dzięki wnioskowi</h1>
+        <h2>Tytuł gry: {{wniosek.game.name}}</h2>
+        <h3>System rankingowy gry: {{wniosek.game.ranking}}</h3>
+        <h3>Zdjęcie: <img class="gamePic" src="{{wniosek.game.picture}}"></h3>
+    {%endif%}
+{%endblock%}

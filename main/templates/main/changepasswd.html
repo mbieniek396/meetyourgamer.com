@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <form method="post" action="/changepassword">
+        {% csrf_token %}
+        <input name="originalPasswd" type="password" placeholder="Obence hasło" required>
+        <input id="chpasswd1" name="passwd1" type="password" placeholder="Nowe hasło" required>
+        <input id="chpasswd2" name="passwd2" type="password" placeholder="Powtórz nowe hasło" required>
+        <p class="hidden" id="chpasswdCH">Hasła nie są takie same!</p>
+        <button id="chpasswdSub" type="submit">Zmień hasło</button>
+    </form>
+    <p style="color=#FF0000;">{{error}}</p>
+    {% load static %}
+    <script src="{% static 'changePasswdValidation.js' %}"></script>
+{%endblock%}

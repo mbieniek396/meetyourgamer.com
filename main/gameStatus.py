@@ -1,0 +1,1 @@
+statusTable = ["odrzucony","zaakceptowany","oczekuje"]

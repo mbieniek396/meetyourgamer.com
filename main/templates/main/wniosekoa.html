@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <h1>Wniosek {{ao}} pomyślnie!</h1>
+    <h2>Tytuł gry: {{wniosek.game.name}}</h2>
+    <h3>System rankingowy gry: {{wniosek.game.ranking}}</h3>
+    <h3>Zdjęcie: <img class="gamePic" src="{{wniosek.game.picture}}"></h3>
+    <a href="/staff/gameformulas">Powrót do list wniosków</a>
+{%endblock%}

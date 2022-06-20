@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <h1>Znajomi</h1>
+
+    {% if si %}
+        <form method="post">
+            {% csrf_token %}
+            {%for fr in user.friendslist.friends.all%}
+                <a href="/profile/{{fr.user.username}}" class="elem">
+                    <img class="gamePicSmall" src="{{fr.profilePicture}}"><p>{{fr.user.username}}</p>
+                </a>
+                <button type="submit" name="delFriend" value="{{fr.user.id}}">Usuń ze znajomych</button>
+            {%endfor%}
+        </form>
+    {%else%}
+        <h3>Nie masz żadnych znajomych</h3>
+        <h4>Możesz ich znaleźć <a href="/findfriends">tutaj</a></h4>
+    {%endif%}
+    
+{%endblock%}

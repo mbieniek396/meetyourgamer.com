@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+
+{% block body %}
+    <h1>Author:{{wniosek.author.username}}</h1>
+    <h3>Data złożenie:{{wniosek.signDate}}</h3>
+    {% if wniosek.gameLink%}
+        <h3>Link to the game: {{wniosek.gameLink}}</h3>
+    {%endif%}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Title</h2>
+        <input id="GameStaffTitle" name="title" type="text">
+        <p id="gameStaffTitleCH"></p>
+        <h2>Ranking System</h2>
+        <h3>Provide ranks like this: rank1;rank2;rank3</h3>
+        <input id="rs" name="rs" type="text">
+        <h2>Game Picture</h2>
+        <img class="gamePic" src="{{wniosek.game.picture}}">
+        <input name="picture" type="file" accept=".jpg, .png">
+        <button id="submitSGW1" type="submit" name="accept" value="accept">Zatwierdź</button>
+        <button id="submitSGW2" type="submit" name="reject" value="reject">Odrzuć</button>
+        <button id="submitSGW3" type="submit" name="skip" value="skip">Powrót</button>
+        <script type="text/javascript">
+            document.getElementById('GameStaffTitle').value = "{{wniosek.game.name}}";
+            document.getElementById('rs').value = "{{wniosek.rankingSystem}}";
+            var gameTits = "{{gry}}"
+        </script>
+        {% load static %}
+        <script src="{% static 'gameValidation.js'%}"></script>
+    </form>
+{%endblock%}

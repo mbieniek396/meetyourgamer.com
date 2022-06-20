@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'basestyle.css'%}" type="text/css">
+    <link rel="icon" href="{% static '/img/favicon.ico'%}" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Meet friends to play good games!">
+    <meta name="keywords" content="Games, Friends, Multiplayer">
+    <meta name="author" content="Mateusz Bieniek">
+
+    <title>{% block title %}MeetYourGamer.com{%endblock%}</title>
+    
+    {% block headStuff %}{% endblock %}
+</head>
+
+
+<body>
+    {% if user.is_authenticated %}
+        <h1>User: {{user.get_username}}</h1>
+    {% else %}
+        <h1>Nie jesteś zalogowany</h1>
+    {% endif %}
+    <div class="sidenav" name="sidenav">
+        <a href="/about">About</a><!--Home-->
+        <a href="/findafriend">Find a friend</a><!--Przegladanie wszystkich ludzi lub szukanie po nicku lub filtrach-->
+        <a href="/logout">Logout</a>
+        <a href="/profile/{{user.get_username}}">Profile</a><!--Profil użytkownika, w środku Modyfikacja wszystkiego co sie wyswietla w profilu-->
+        <a href="/changepassword">Change password</a>
+        <a href="/addgame">Add a new game</a><!--Lista zgloszen nowych gier twoich, mozliwosc dodania nowej(lista, zgloszenie, new zgloszenie)-->
+        <a href="/gamelist">View Game formulas</a>
+        <a href="/games">Games</a>
+        <a href="/friends">View friends list</a><!--Lista znajomych z napisaniem do nich lub wywaleniem ze znaj lub pokaz profil-->
+        <a href="/friendrequests/{{user.id}}">Friend requestes</a><!--Zaproszenia do znaj-->
+        <a href="#">Messages</a><!--Wiadomosci-->
+    </div>
+
+    {% block body %}{%endblock%}
+</body>
+
+</html>

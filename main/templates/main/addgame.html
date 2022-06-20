@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <form method="post" action="/addgame">
+        {% csrf_token %}
+        <input id="gtU"name="title" type="text" placeholder="Game title" required>
+        <p id="gtUCH"></p>
+        <input name="ranking" type="text" placeholder="Ranking system">
+        <input name="link" type="text" placeholder="Link to the game site">
+        <button id="sU1" type="submit">Prześlij do weryfikacji</button>
+    </form>
+    <script>
+        var gameTits = "{{gry}}"
+    </script>
+    {% load static %}
+    <script src="{% static 'formulaUserValidation.js'%}"></script>
+{%endblock%}

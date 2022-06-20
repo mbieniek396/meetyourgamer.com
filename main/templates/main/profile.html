@@ -1,0 +1,107 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <h1>{{profile.user.username}}</h1>
+    <img class="profPic" src="{{profile.profilePicture}}">
+    {% if profile.imie %}<h2>{{profile.imie}}</h2>{%endif%}{% if profile.nazwisko %}<h2>{{profile.nazwisko}}</h2>{%endif%}
+    {% if profile.wiek %}<h2>{{profile.wiek}} lat</h2>{%endif%}
+    {%if profile.mondays.all|length > 0%}
+        <h2>Poniedziałek 
+            {% for monday in profile.mondays.all%}
+                {%if monday.start == "00:00" and monday.end == "00:00" %}Cały dzień
+                {%elif not monday.end%} {{monday.start}}-00:00
+                {%elif not monday.start%} 00:00-{{profile.monday.end}}
+                {%else%}{{monday.start}}-{{monday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    {%if profile.tuesdays.all|length > 0%}
+        <h2>Wtorek 
+            {% for tuesday in profile.tuesdays.all%}
+                {%if tuesday.start == "00:00" and tuesday.end == "00:00" %}Cały dzień
+                {%elif not tuesday.end%} {{tuesday.start}}-00:00
+                {%elif not tuesday.start%} 00:00-{{profile.tuesday.end}}
+                {%else%}{{tuesday.start}}-{{tuesday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    {%if profile.wedensdays.all|length > 0%}
+        <h2>Środa 
+            {% for wedensday in profile.wedensdays.all%}
+                {%if wedensday.start == "00:00" and wedensday.end == "00:00" %}Cały dzień
+                {%elif not wedensday.end%} {{wedensday.start}}-00:00
+                {%elif not wedensday.start%} 00:00-{{profile.wedensday.end}}
+                {%else%}{{wedensday.start}}-{{wedensday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    {%if profile.thursdays.all|length > 0%}
+        <h2>Czwartek
+            {% for thursday in profile.thursdays.all%}
+                {%if thursday.start == "00:00" and thursday.end == "00:00" %}Cały dzień
+                {%elif not thursday.end%} {{thursday.start}}-00:00
+                {%elif not thursday.start%} 00:00-{{profile.thursday.end}}
+                {%else%}{{thursday.start}}-{{thursday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    {%if profile.fridays.all|length > 0%}
+        <h2>Piątek
+            {% for friday in profile.fridays.all%}
+                {%if friday.start == "00:00" and friday.end == "00:00" %}Cały dzień
+                {%elif not friday.end%} {{friday.start}}-00:00
+                {%elif not friday.start%} 00:00-{{profile.friday.end}}
+                {%else%}{{friday.start}}-{{friday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    {%if profile.saturdays.all|length > 0%}
+        <h2>Sobota 
+            {% for saturday in profile.saturdays.all%}
+                {%if saturday.start == "00:00" and saturday.end == "00:00" %}Cały dzień
+                {%elif not saturday.end%} {{saturday.start}}-00:00
+                {%elif not saturday.start%} 00:00-{{profile.saturday.end}}
+                {%else%}{{saturday.start}}-{{saturday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    {%if profile.sundays.all|length > 0%}
+        <h2>Niedziela
+            {% for sunday in profile.sundays.all%}
+                {%if sunday.start == "00:00" and sunday.end == "00:00" %}Cały dzień
+                {%elif not sunday.end%} {{sunday.start}}-00:00
+                {%elif not sunday.start%} 00:00-{{profile.sunday.end}}
+                {%else%}{{sunday.start}}-{{sunday.end}}
+                {%endif%}
+            {% endfor %}</h2>
+    {%endif%}
+    
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if other %}
+                {%if pending%}
+                    <button class="notWorking" type="submit" name="n" value="n">Oczekuje na akceptacje</button>
+                {%else%}
+                    {%if not friends%}
+                        <button type="submit" name="addFriend" value="{{profile.id}}">Dodaj do znajomych</button>
+                    {%else%}
+                        <button type="submit" name="delFriend" value="{{profile.user.id}}">Usuń ze znajomych</button>
+                    {%endif%}
+                {%endif%}
+            {%endif%}
+        </form>
+    
+    <h2>Games:</h2>
+    {%if si%}
+        {%for ugame in profile.user.usergame_set.all%}
+            <p>
+                <img class="gamePicSmall" src="{{ugame.game.picture}}"><p>{{ugame.game.name}}</p>
+                {%if ugame.rank%}<p>{{ugame.rank}}</p>{%endif%}
+            </p>
+        {%endfor%}
+    {%else%}
+        <h3>Ten użytkownik nie gra w żadne gry</h3>
+    {%endif%}
+    {%if user.get_username == profile.user.username%}<a href="/editprofile">Edytuj profil</a>{%endif%}
+{%endblock%}

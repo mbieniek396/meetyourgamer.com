@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Title</h2>
+        <input id="GameStaffTitleSE" name="title" type="text">
+        <p id="GameStaffTitleSECH"></p>
+        <h2>Ranking System</h2>
+        <h3>Provide ranks like this: rank1;rank2;rank3</h3>
+        <input id="rs" name="rs" type="text">
+        <h2>Game Picture</h2>
+        <img class="gamePic" src="{{game.picture}}">
+        <input name="picture" type="file" accept=".jpg, .png">
+        <button id="submitSE" type="submit" name="accept" value="accept">Zatwierdź</button>
+        <button type="submit" name="skip" value="skip">Anuluj</button>
+        <script type="text/javascript">
+            document.getElementById('GameStaffTitleSE').value = "{{game.name}}";
+            document.getElementById('rs').value = "{{game.ranking}}";
+            var gameTits = "{{gry}}"
+            var selfTitle = "{{self}}"
+        </script>
+        {% load static %}
+        <script src="{% static 'gameSEValidation.js'%}"></script>
+    </form>
+{%endblock%}

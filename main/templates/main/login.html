@@ -1,0 +1,12 @@
+{% extends "main/startpage.html" %}
+
+{% block body%}
+    <form method="post" action="/login">
+        {% csrf_token %}
+        <input name="login" type="text" placeholder="Login" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <button type="submit">Zaloguj</button>
+    </form>
+    <p style="color=#FF0000;">{{msg}}</p>
+    <p>Nie masz jeszcze konta?<a href="/register">Zarejestruj się</a></p>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    {%if requestes|length > 0%}
+        <h1>Zaproszenia do grona znajomych</h1>
+    {%else%}
+        <h1>Nie masz żadnych zaproszeń do grona znajomych</h1>
+    {%endif%}
+    <form method="post">
+        {% csrf_token %}
+        {%for req in requests%}
+            <p>
+                <img class="gamePicSmall" src="{{req.sender.profilePicture}}"><p>{{req.sender.user.username}}</p>
+                <button type="submit" name="addFriend" value="{{req.sender.id}}">Akceptuj</button>
+                <button type="submit" name="delFriend" value="{{req.sender.id}}">Odrzuć</button>
+            </p>
+        {%endfor%}
+        {%if pending|length > 0%}
+            <h1>Oczekujące zaproszenia</h1>
+        {%endif%}
+        {%for pend in pending%}
+            <p>
+                <img class="gamePicSmall" src="{{pend.receiver.userprofile.profilePicture}}"><p>{{pend.receiver.username}}</p>
+                <button type="submit" name="cancelFriend" value="{{pend.receiver.id}}">Anuluj</button>
+            </p>
+        {%endfor%}
+    </form>
+    
+{%endblock%}

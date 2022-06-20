@@ -1,0 +1,65 @@
+/* pointer-events: none; to disable interaction*/
+/*.hide{
+    display: none;
+}
+
+.chbL{
+    color: green;
+}
+
+#chb:checked ~ .chbL{
+    color:red;
+}
+*/
+.CustomHover:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+#datesLabelsClass label{
+    background-color: gray;
+}
+
+.Choosen{
+    background-color: green !important;
+}
+
+.notWorking{
+    pointer-events: none;
+}
+
+.hidden{
+    display: none;
+}
+.profPic{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.gamePic{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.gamePicSmall{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.elem{
+    display: block;
+    background-color: rgb(118, 115, 115);
+    transition: background-color 0.3s;
+    text-decoration: none;
+    color: black;
+}
+
+.elem:hover{
+    background-color: rgb(117, 97, 97);
+}

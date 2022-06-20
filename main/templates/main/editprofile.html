@@ -1,0 +1,167 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <h1>{{user.get_username}}</h1>
+    <form id="EPsubmit" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="imie">Imie</label>
+        <input id="imie" name="imie" type="text">
+        <label for="nazwisko">Nazwisko</label>
+        <input id="nazwisko" name="nazwisko" type="text">
+        <label for="wiek">Wiek</label>
+        <input id="wiek" name="wiek" type="number" min="0" max="200">
+        <label for="profilePicture">Zdjęcie profilowe</label>
+        <img class="profPic" src="{{user.userprofile.profilePicture}}">
+        <input name="profilePicture" type="file" accept=".jpg, .png">
+        <p>Możesz dodać gry w które grasz <a href="/games" target="_blank">tutaj</a></p>
+        <h2>Kiedy zazwyczaj grasz</h2>
+        <!-- ---Kiedy grasz -------------------------->
+        <!-- Poniedziaek-->
+        <div id="datesLabelsClass">
+            <div class="pon">
+            <h4>Poniedziałek</h4>
+            <label id="mondayExactEPLabel" for="mondayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="mondayOptions" id="mondayExactEP">
+            <label id="mondayFullEPLabel" for="mondayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="mondayOptions" value="Full" id="mondayFullEP">
+            <label id="mondayEmptyEPLabel" for="mondayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="mondayOptions" value="Empty" id="mondayEmptyEP">
+            <div id="mondayExactIntervalsDiv"></div>
+            <script type="text/javascript">
+                var mondaysEmpty = "{{mondaysEmpty}}";
+                var mondaysFull = "{{mondaysFull}}";
+                var mondayStartingIntervals = []
+                {% for monday in user.userprofile.mondays.all %}
+                    var arr = []
+                    arr.push("{{monday.start}}")
+                    arr.push("{{monday.end}}")
+                    mondayStartingIntervals.push(arr)
+                {%endfor%}
+            </script>
+            {% load static%}
+            <script src="{% static 'editprofile.js' %}"></script>
+            </div>
+            <!-- WTOREK -->
+            <div class="wt">
+                <h4>Wtorek</h4>
+                <label id="tuesdayExactEPLabel" for="tuesdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="tuesdayOptions" id="tuesdayExactEP">
+                <label id="tuesdayFullEPLabel" for="tuesdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="tuesdayOptions" value="Full" id="tuesdayFullEP">
+                <label id="tuesdayEmptyEPLabel" for="tuesdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="tuesdayOptions" value="Empty" id="tuesdayEmptyEP">
+                <div id="tuesdayExactIntervalsDiv"></div>
+                <script type="text/javascript">
+                    var tuesdaysEmpty = "{{tuesdaysEmpty}}";
+                    var tuesdaysFull = "{{tuesdaysFull}}";
+                    var tuesdayStartingIntervals = []
+                    {% for tuesday in user.userprofile.tuesdays.all %}
+                        var arr = []
+                        arr.push("{{tuesday.start}}")
+                        arr.push("{{tuesday.end}}")
+                        tuesdayStartingIntervals.push(arr)
+                    {%endfor%}
+                </script>
+                <script src="{% static 'editprofileTuesday.js' %}"></script>
+            </div>
+            <!-- ŚRODA -->
+            <div class="sr">
+                <h4>Środa</h4>
+                <label id="wedensdayExactEPLabel" for="wedensdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="wedensdayOptions" id="wedensdayExactEP">
+                <label id="wedensdayFullEPLabel" for="wedensdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="wedensdayOptions" value="Full" id="wedensdayFullEP">
+                <label id="wedensdayEmptyEPLabel" for="wedensdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="wedensdayOptions" value="Empty" id="wedensdayEmptyEP">
+                <div id="wedensdayExactIntervalsDiv"></div>
+                <script type="text/javascript">
+                    var wedensdaysEmpty = "{{wedensdaysEmpty}}";
+                    var wedensdaysFull = "{{wedensdaysFull}}";
+                    var wedensdayStartingIntervals = []
+                    {% for wedensday in user.userprofile.wedensdays.all %}
+                        var arr = []
+                        arr.push("{{wedensday.start}}")
+                        arr.push("{{wedensday.end}}")
+                        wedensdayStartingIntervals.push(arr)
+                    {%endfor%}
+                </script>
+                <script src="{% static 'editprofileWedensday.js' %}"></script>
+            </div>
+            <!-- Czwartek -->
+            <div class="czw">
+                <h4>Czwartek</h4>
+                <label id="thursdayExactEPLabel" for="thursdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="thursdayOptions" id="thursdayExactEP">
+                <label id="thursdayFullEPLabel" for="thursdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="thursdayOptions" value="Full" id="thursdayFullEP">
+                <label id="thursdayEmptyEPLabel" for="thursdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="thursdayOptions" value="Empty" id="thursdayEmptyEP">
+                <div id="thursdayExactIntervalsDiv"></div>
+                <script type="text/javascript">
+                    var thursdaysEmpty = "{{thursdaysEmpty}}";
+                    var thursdaysFull = "{{thursdaysFull}}";
+                    var thursdayStartingIntervals = []
+                    {% for thursday in user.userprofile.thursdays.all %}
+                        var arr = []
+                        arr.push("{{thursday.start}}")
+                        arr.push("{{thursday.end}}")
+                        thursdayStartingIntervals.push(arr)
+                    {%endfor%}
+                </script>
+                <script src="{% static 'editprofileThursday.js' %}"></script>
+            </div>
+            <!-- Piątek -->
+            <div class="pt">
+                <h4>Piątek</h4>
+                <label id="fridayExactEPLabel" for="fridayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="fridayOptions" id="fridayExactEP">
+                <label id="fridayFullEPLabel" for="fridayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="fridayOptions" value="Full" id="fridayFullEP">
+                <label id="fridayEmptyEPLabel" for="fridayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="fridayOptions" value="Empty" id="fridayEmptyEP">
+                <div id="fridayExactIntervalsDiv"></div>
+                <script type="text/javascript">
+                    var fridaysEmpty = "{{fridaysEmpty}}";
+                    var fridaysFull = "{{fridaysFull}}";
+                    var fridayStartingIntervals = []
+                    {% for friday in user.userprofile.fridays.all %}
+                        var arr = []
+                        arr.push("{{friday.start}}")
+                        arr.push("{{friday.end}}")
+                        fridayStartingIntervals.push(arr)
+                    {%endfor%}
+                </script>
+                <script src="{% static 'editprofileFriday.js' %}"></script>
+            </div>
+            <!-- Sobota -->
+            <div class="sb">
+                <h4>Sobota</h4>
+                <label id="saturdayExactEPLabel" for="saturdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="saturdayOptions" id="saturdayExactEP">
+                <label id="saturdayFullEPLabel" for="saturdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="saturdayOptions" value="Full" id="saturdayFullEP">
+                <label id="saturdayEmptyEPLabel" for="saturdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="saturdayOptions" value="Empty" id="saturdayEmptyEP">
+                <div id="saturdayExactIntervalsDiv"></div>
+                <script type="text/javascript">
+                    var saturdaysEmpty = "{{saturdaysEmpty}}";
+                    var saturdaysFull = "{{saturdaysFull}}";
+                    var saturdayStartingIntervals = []
+                    {% for saturday in user.userprofile.saturdays.all %}
+                        var arr = []
+                        arr.push("{{saturday.start}}")
+                        arr.push("{{saturday.end}}")
+                        saturdayStartingIntervals.push(arr)
+                    {%endfor%}
+                </script>
+                <script src="{% static 'editprofileSaturday.js' %}"></script>
+                
+            </div>
+            <!-- Niedziela -->
+            <div class="ndz">
+                <h4>Niedziela</h4>
+                <label id="sundayExactEPLabel" for="sundayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="sundayOptions" id="sundayExactEP">
+                <label id="sundayFullEPLabel" for="sundayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="sundayOptions" value="Full" id="sundayFullEP">
+                <label id="sundayEmptyEPLabel" for="sundayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="sundayOptions" value="Empty" id="sundayEmptyEP">
+                <div id="sundayExactIntervalsDiv"></div>
+                <script type="text/javascript">
+                    var sundaysEmpty = "{{sundaysEmpty}}";
+                    var sundaysFull = "{{sundaysFull}}";
+                    var sundayStartingIntervals = []
+                    {% for sunday in user.userprofile.sundays.all %}
+                        var arr = []
+                        arr.push("{{sunday.start}}")
+                        arr.push("{{sunday.end}}")
+                        sundayStartingIntervals.push(arr)
+                    {%endfor%}
+                </script>
+                <script src="{% static 'editprofileSunday.js' %}"></script>
+            </div>
+        </div>
+        <!-- KONIEC DNI TYGODNIA -->
+        <button type="submit" name="yes" value="yes">Zatwierdź</button>
+        <button type="submit">Anuluj</button>
+    </form>
+{%endblock%}

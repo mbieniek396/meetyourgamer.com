@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<!-- About/Home dla goscia gdzie sie logujesz-->
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'basestyle.css'%}" type="text/css">
+    <link rel="icon" href="{% static '/img/favicon.ico'%}" type="image/x-icon">
+    {%block head%}{%endblock%}
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Meet friends to play games!">
+    <meta name="keywords" content="Games, Friends, Multiplayer">
+    <meta name="author" content="Mateusz Bieniek">
+
+    <title>MeetYourGamer.com</title>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+        <h1>User: {{user.get_username}}</h1>
+    {% else %}
+        <h1>Nie jesteś zalogowany</h1>
+    {% endif %}
+    
+    {% block body%}
+    <div class="AboutLogin">
+        <h2>Log in to find your friends</h2>
+        <a class="ToLoginFromAbout" href="/login">Login</a>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
