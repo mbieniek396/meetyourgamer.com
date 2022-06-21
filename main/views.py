@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from main.models import FriendRequest, FriendsList, Game, GameFormula, Monday, UserGame, UserProfile, Tuesday, Wedensday, Thursday, Friday, Saturday, Sunday
+from main.models import ChatBox, FriendRequest, FriendsList, Game, GameFormula, Monday, UserGame, UserProfile, Tuesday, Wedensday, Thursday, Friday, Saturday, Sunday
 from django.core.files.storage import FileSystemStorage
 from . import gameStatus
 from datetime import datetime
@@ -557,6 +557,16 @@ def friends(request):
             si = False
     except Exception:
         pass
+    if request.POST.get("messages"):
+        otherUser = User.objects.get(id=request.POST.get("messages"))
+        czat = ChatBox.objects.filter(users__id=request.user.id).filter(users__id=otherUser.id)
+        if not czat:
+            czat = ChatBox()
+            czat.save()
+            czat.users.add(otherUser)
+            czat.users.add(request.user)
+            czat.save()
+        return redirect("/chat/"+str(czat[0].id)+"/")
     if request.POST.get("delFriend"):
         frI = FriendsList.objects.get(owner=request.user)
         frU = FriendsList.objects.get(owner=User.objects.get(id=request.POST.get("delFriend")))

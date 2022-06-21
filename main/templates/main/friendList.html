@@ -9,8 +9,9 @@
             {%for fr in user.friendslist.friends.all%}
                 <a href="/profile/{{fr.user.username}}" class="elem">
                     <img class="gamePicSmall" src="{{fr.profilePicture}}"><p>{{fr.user.username}}</p>
+                    <button class="btn btn-outline-info" type="submit" name="messages" value="{{fr.user.id}}">Wiadomosci</button>
+                    <button class="btn btn-outline-danger" type="submit" name="delFriend" value="{{fr.user.id}}">Usuń ze znajomych</button>
                 </a>
-                <button type="submit" name="delFriend" value="{{fr.user.id}}">Usuń ze znajomych</button>
             {%endfor%}
         </form>
     {%else%}

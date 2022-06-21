@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    
+    <textarea id="chat-text" cols="79" rows="20" readonly></textarea>
+    <div>
+        <input id="input" type="text" size="77">
+        <input id="submit" type="button" value="Wyślij">
+    </div>
+
+    <div id="messageOutput"></div>
+
+    {{ room_name|json_script:"room-name"}}
+    <script>
+
+        var messageBox = document.querySelector('#chat-text')
+        {% for msg in msgs%}
+            messageBox.value+="{{msg.sender.username}}: {{msg.content}}\n"
+        {%endfor%}
+
+        document.querySelector("#submit").onclick = function(e){
+            const messageInput = document.querySelector('#input')
+            const message = {{user.id}}+"@=$"+messageInput.value
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'user': "{{user.username}}"
+            }))
+            messageInput.value = ''
+        }
+
+
+        const roomName = JSON.parse(document.getElementById("room-name").textContent);
+
+        const chatSocket = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/chat/' +
+            roomName +
+            '/'
+        )
+
+
+
+        chatSocket.onmessage = function(e){
+            const data = JSON.parse(e.data)
+            document.querySelector('#chat-text').value += (data.user+": "+data.message + "\n")
+        }
+    </script>
+{%endblock%}

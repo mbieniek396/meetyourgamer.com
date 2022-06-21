@@ -135,3 +135,11 @@ class FriendRequest(models.Model):
 
     def __str__(self):
         return self.sender.user.username+" zaprasza "+self.receiver.username
+
+class ChatBox(models.Model):
+    users = models.ManyToManyField(User)
+
+class Message(models.Model):
+    content = models.TextField(max_length=500, null=True)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    chat=models.ForeignKey(ChatBox, on_delete=models.CASCADE, null=True)
