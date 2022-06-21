@@ -18,9 +18,9 @@
         <h2>Game Picture</h2>
         <img class="gamePic" src="{{wniosek.game.picture}}">
         <input name="picture" type="file" accept=".jpg, .png">
-        <button id="submitSGW1" type="submit" name="accept" value="accept">Zatwierdź</button>
-        <button id="submitSGW2" type="submit" name="reject" value="reject">Odrzuć</button>
-        <button id="submitSGW3" type="submit" name="skip" value="skip">Powrót</button>
+        <button id="submitSGW1" type="submit" class="btn btn-outline-success"name="accept" value="accept">Zatwierdź</button>
+        <button id="submitSGW2" type="submit" name="reject" class="btn btn-outline-danger" value="reject">Odrzuć</button>
+        <button id="submitSGW3" type="submit" name="skip" class="btn btn-outline-secondary" value="skip">Powrót</button>
         <script type="text/javascript">
             document.getElementById('GameStaffTitle').value = "{{wniosek.game.name}}";
             document.getElementById('rs').value = "{{wniosek.rankingSystem}}";

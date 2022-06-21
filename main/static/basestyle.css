@@ -11,6 +11,49 @@
     color:red;
 }
 */
+body{
+    margin:  0;
+    padding: 0;
+    background-color: #7e857a;
+    height: 100%;
+}
+
+.green{
+    color:#69b33b;
+}
+
+.logo{
+    width: 100%;
+    background-color: #2e302f;
+    color: #fff;
+    font-size: 40px;
+    margin: 0;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
+.sidenav{
+    background-color: rgb(29, 27, 27);
+    width: 100%; 
+}
+
+
+
+.sidenav a{
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display:inline-block;
+    background-color: rgb(29, 27, 27);
+    transition: padding 0.2s;
+}
+
+.sidenav a:hover{
+    color: #fff;
+    background-color: #7e857a;
+    padding: 10px 20px;
+}
+
 .CustomHover:hover{
     opacity: 0.6;
     cursor: pointer;
@@ -18,6 +61,14 @@
 
 #datesLabelsClass label{
     background-color: gray;
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.15s;
+}
+
+#datesLabelsClass label:hover{
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 .Choosen{
@@ -60,6 +111,33 @@
     color: black;
 }
 
+.extraBig{
+    font-size: 60px !important;
+}
+
+.ToLoginFromAbout{
+    font-size: 30px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #2e302f;
+    border: solid 2px;
+    border-radius: 20px;
+    border-color: #2fe435;
+    transition: 0.2s;
+}
+
+.ToLoginFromAbout:hover{
+    background-color: #2fe435;
+    color:#fff
+}
+
+.elem p,img{
+    display: inline-block;
+    padding: 10px;
+    vertical-align: middle;
+}
+
 .elem:hover{
     background-color: rgb(117, 97, 97);
+    color: black;
 }

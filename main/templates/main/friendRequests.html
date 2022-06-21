@@ -11,8 +11,8 @@
         {%for req in requests%}
             <p>
                 <img class="gamePicSmall" src="{{req.sender.profilePicture}}"><p>{{req.sender.user.username}}</p>
-                <button type="submit" name="addFriend" value="{{req.sender.id}}">Akceptuj</button>
-                <button type="submit" name="delFriend" value="{{req.sender.id}}">Odrzuć</button>
+                <button type="submit" class="btn btn-outline-secondary" name="addFriend" value="{{req.sender.id}}">Akceptuj</button>
+                <button type="submit" class="btn btn-outline-danger" name="delFriend" value="{{req.sender.id}}">Odrzuć</button>
             </p>
         {%endfor%}
         {%if pending|length > 0%}
@@ -21,7 +21,7 @@
         {%for pend in pending%}
             <p>
                 <img class="gamePicSmall" src="{{pend.receiver.userprofile.profilePicture}}"><p>{{pend.receiver.username}}</p>
-                <button type="submit" name="cancelFriend" value="{{pend.receiver.id}}">Anuluj</button>
+                <button type="submit" class="btn btn-outline-secondary" name="cancelFriend" value="{{pend.receiver.id}}">Anuluj</button>
             </p>
         {%endfor%}
     </form>

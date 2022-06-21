@@ -4,16 +4,17 @@
     <h1>{{user.get_username}}</h1>
     <form id="EPsubmit" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <label for="profilePicture">Zdjęcie profilowe</label><input name="profilePicture" type="file" accept=".jpg, .png">
         <label for="imie">Imie</label>
         <input id="imie" name="imie" type="text">
         <label for="nazwisko">Nazwisko</label>
         <input id="nazwisko" name="nazwisko" type="text">
         <label for="wiek">Wiek</label>
         <input id="wiek" name="wiek" type="number" min="0" max="200">
-        <label for="profilePicture">Zdjęcie profilowe</label>
+        
         <img class="profPic" src="{{user.userprofile.profilePicture}}">
-        <input name="profilePicture" type="file" accept=".jpg, .png">
-        <p>Możesz dodać gry w które grasz <a href="/games" target="_blank">tutaj</a></p>
+        
+        <h3>Możesz dodać gry w które grasz <a href="/games" target="_blank">tutaj</a></h3>
         <h2>Kiedy zazwyczaj grasz</h2>
         <!-- ---Kiedy grasz -------------------------->
         <!-- Poniedziaek-->
@@ -23,6 +24,7 @@
             <label id="mondayExactEPLabel" for="mondayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="mondayOptions" id="mondayExactEP">
             <label id="mondayFullEPLabel" for="mondayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="mondayOptions" value="Full" id="mondayFullEP">
             <label id="mondayEmptyEPLabel" for="mondayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="mondayOptions" value="Empty" id="mondayEmptyEP">
+            <div style="margin-top: 13px;">
             <div id="mondayExactIntervalsDiv"></div>
             <script type="text/javascript">
                 var mondaysEmpty = "{{mondaysEmpty}}";
@@ -44,7 +46,7 @@
                 <label id="tuesdayExactEPLabel" for="tuesdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="tuesdayOptions" id="tuesdayExactEP">
                 <label id="tuesdayFullEPLabel" for="tuesdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="tuesdayOptions" value="Full" id="tuesdayFullEP">
                 <label id="tuesdayEmptyEPLabel" for="tuesdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="tuesdayOptions" value="Empty" id="tuesdayEmptyEP">
-                <div id="tuesdayExactIntervalsDiv"></div>
+                <div style="margin-top: 13px;"><div id="tuesdayExactIntervalsDiv"></div>
                 <script type="text/javascript">
                     var tuesdaysEmpty = "{{tuesdaysEmpty}}";
                     var tuesdaysFull = "{{tuesdaysFull}}";
@@ -64,7 +66,7 @@
                 <label id="wedensdayExactEPLabel" for="wedensdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="wedensdayOptions" id="wedensdayExactEP">
                 <label id="wedensdayFullEPLabel" for="wedensdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="wedensdayOptions" value="Full" id="wedensdayFullEP">
                 <label id="wedensdayEmptyEPLabel" for="wedensdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="wedensdayOptions" value="Empty" id="wedensdayEmptyEP">
-                <div id="wedensdayExactIntervalsDiv"></div>
+                <div style="margin-top: 13px;"><div id="wedensdayExactIntervalsDiv"></div>
                 <script type="text/javascript">
                     var wedensdaysEmpty = "{{wedensdaysEmpty}}";
                     var wedensdaysFull = "{{wedensdaysFull}}";
@@ -84,7 +86,7 @@
                 <label id="thursdayExactEPLabel" for="thursdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="thursdayOptions" id="thursdayExactEP">
                 <label id="thursdayFullEPLabel" for="thursdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="thursdayOptions" value="Full" id="thursdayFullEP">
                 <label id="thursdayEmptyEPLabel" for="thursdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="thursdayOptions" value="Empty" id="thursdayEmptyEP">
-                <div id="thursdayExactIntervalsDiv"></div>
+                <div style="margin-top: 13px;"><div id="thursdayExactIntervalsDiv"></div>
                 <script type="text/javascript">
                     var thursdaysEmpty = "{{thursdaysEmpty}}";
                     var thursdaysFull = "{{thursdaysFull}}";
@@ -104,7 +106,7 @@
                 <label id="fridayExactEPLabel" for="fridayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="fridayOptions" id="fridayExactEP">
                 <label id="fridayFullEPLabel" for="fridayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="fridayOptions" value="Full" id="fridayFullEP">
                 <label id="fridayEmptyEPLabel" for="fridayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="fridayOptions" value="Empty" id="fridayEmptyEP">
-                <div id="fridayExactIntervalsDiv"></div>
+                <div style="margin-top: 13px;"><div id="fridayExactIntervalsDiv"></div>
                 <script type="text/javascript">
                     var fridaysEmpty = "{{fridaysEmpty}}";
                     var fridaysFull = "{{fridaysFull}}";
@@ -124,7 +126,7 @@
                 <label id="saturdayExactEPLabel" for="saturdayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="saturdayOptions" id="saturdayExactEP">
                 <label id="saturdayFullEPLabel" for="saturdayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="saturdayOptions" value="Full" id="saturdayFullEP">
                 <label id="saturdayEmptyEPLabel" for="saturdayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="saturdayOptions" value="Empty" id="saturdayEmptyEP">
-                <div id="saturdayExactIntervalsDiv"></div>
+                <div style="margin-top: 13px;"><div id="saturdayExactIntervalsDiv"></div>
                 <script type="text/javascript">
                     var saturdaysEmpty = "{{saturdaysEmpty}}";
                     var saturdaysFull = "{{saturdaysFull}}";
@@ -145,7 +147,7 @@
                 <label id="sundayExactEPLabel" for="sundayExactEP">Gram w konkretnych godzinach</label><input class="hidden" type="radio" value="Exact" name="sundayOptions" id="sundayExactEP">
                 <label id="sundayFullEPLabel" for="sundayFullEP">Gram cały dzień</label><input class="hidden" type="radio" name="sundayOptions" value="Full" id="sundayFullEP">
                 <label id="sundayEmptyEPLabel" for="sundayEmptyEP">Nie gram w ten dzień</label><input class="hidden" type="radio" name="sundayOptions" value="Empty" id="sundayEmptyEP">
-                <div id="sundayExactIntervalsDiv"></div>
+                <div style="margin-top: 13px;"><div id="sundayExactIntervalsDiv"></div>
                 <script type="text/javascript">
                     var sundaysEmpty = "{{sundaysEmpty}}";
                     var sundaysFull = "{{sundaysFull}}";
@@ -161,7 +163,7 @@
             </div>
         </div>
         <!-- KONIEC DNI TYGODNIA -->
-        <button type="submit" name="yes" value="yes">Zatwierdź</button>
-        <button type="submit">Anuluj</button>
+        <button class="btn btn-outline-success" type="submit" name="yes" value="yes">Zatwierdź</button>
+        <button class="btn btn-outline-danger" type="submit">Anuluj</button>
     </form>
 {%endblock%}

@@ -8,23 +8,25 @@
         
         {% if not admin%}
             {% if user.is_staff%}
-                <button type="submit" name="admin" value="admin">AdminView</button>
+                <button class="btn btn-outline-primary" type="submit" name="admin" value="admin">AdminView</button>
             {%endif%}
-            <button type="submit" name="all" value="all">Wszystkie gry</button>
-            <button type="submit" name="your" value="your">Twoje gry</button>
+            <button type="submit" class="btn btn-outline-success" name="all" value="all">Wszystkie gry</button>
+            <button type="submit" name="your" class="btn btn-outline-info" value="your">Twoje gry</button>
         {%else%}
-            <button type="submit" name="normal" value="normal">Powrót</button>
+            <button type="submit" class="btn btn-outline-primary" name="normal" value="normal">Powrót</button>
         {%endif%}
+        <div style="margin-top: 10px;"></div>
         {% for g in UserGames%}
             <h3>{{g.name}}</h3>
             <img class="gamePic" src="{{g.picture}}">
             <h3>Ranks: {{g.ranking}}</h3>
             {%if admin%}
-                <button type="submit" name="del" value="{{g.id}}">Usuń</button>
-                <button type="submit" name="edit" value="{{g.id}}">Edytuj</button>
+                <button type="submit" name="del" class="btn btn-outline-danger" value="{{g.id}}">Usuń</button>
+                <button type="submit" name="edit" class="btn btn-outline-success" value="{{g.id}}">Edytuj</button>
             {%else%}
-                <button type="submit" name="dGame" value="{{g.id}}">Usun z gier w które grasz</button>
+                <button type="submit" class="btn btn-outline-danger" name="dGame" value="{{g.id}}">Usun z gier w które grasz</button>
             {%endif%}
+            <div style="margin-top: 10px;"></div>
         {%endfor%}
         
         {% for g in games%}
@@ -32,10 +34,10 @@
             <img class="gamePic" src="{{g.picture}}">
             <h3>Ranks: {{g.ranking}}</h3>
             {%if admin%}
-                <button type="submit" name="del" value="{{g.id}}">Usuń</button>
-                <button type="submit" name="edit" value="{{g.gameformula.id}}">Edytuj</button>
+                <button type="submit" name="del"  class="btn btn-outline-danger" value="{{g.id}}">Usuń</button>
+                <button type="submit" name="edit" class="btn btn-outline-success" value="{{g.gameformula.id}}">Edytuj</button>
             {%else%}
-                <button type="submit" name="add" value="{{g.id}}">Dodaj do gier w które grasz</button>
+                <button type="submit" class="btn btn-outline-success" name="add" value="{{g.id}}">Dodaj do gier w które grasz</button>
             {%endif%}
         {%endfor%}
     </form>

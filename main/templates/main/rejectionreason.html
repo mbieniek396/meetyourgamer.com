@@ -3,7 +3,7 @@
 {% block body %}
     <form method="post">
         {% csrf_token %}
-        <input name="rr" type="text" placeholder="Fill the rejection reason" required>
-        <button type="submit">Potwierdź</button>
+        <input style="width: 500px;text-align: top;"name="rr" type="text" placeholder="Podaj powód odrzucenia" required>
+        <button class="btn btn-outline-success" type="submit">Potwierdź</button>
     </form>
 {%endblock%}

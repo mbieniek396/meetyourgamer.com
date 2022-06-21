@@ -7,9 +7,12 @@
     <link rel="icon" href="{% static '/img/favicon.ico'%}" type="image/x-icon">
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Meet friends to play good games!">
     <meta name="keywords" content="Games, Friends, Multiplayer">
     <meta name="author" content="Mateusz Bieniek">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <title>{% block title %}MeetYourGamer.com{%endblock%}</title>
     
@@ -17,27 +20,40 @@
 </head>
 
 
-<body>
-    {% if user.is_authenticated %}
-        <h1>User: {{user.get_username}}</h1>
-    {% else %}
-        <h1>Nie jesteś zalogowany</h1>
-    {% endif %}
-    <div class="sidenav" name="sidenav">
+<body class="d-flex flex-column min-vh-100">
+    <div class="d-flex justify-content-end">
+        <h1 class="logo">Meet<span class="green">Your</span>Gamer.com</h1>
+    </div>
+    <div class="sidenav d-flex justify-content-end" name="sidenav">
         <a href="/about">About</a><!--Home-->
-        <a href="/findafriend">Find a friend</a><!--Przegladanie wszystkich ludzi lub szukanie po nicku lub filtrach-->
-        <a href="/logout">Logout</a>
-        <a href="/profile/{{user.get_username}}">Profile</a><!--Profil użytkownika, w środku Modyfikacja wszystkiego co sie wyswietla w profilu-->
-        <a href="/changepassword">Change password</a>
-        <a href="/addgame">Add a new game</a><!--Lista zgloszen nowych gier twoich, mozliwosc dodania nowej(lista, zgloszenie, new zgloszenie)-->
-        <a href="/gamelist">View Game formulas</a>
-        <a href="/games">Games</a>
-        <a href="/friends">View friends list</a><!--Lista znajomych z napisaniem do nich lub wywaleniem ze znaj lub pokaz profil-->
-        <a href="/friendrequests/{{user.id}}">Friend requestes</a><!--Zaproszenia do znaj-->
-        <a href="#">Messages</a><!--Wiadomosci-->
+        <a href="/findafriend">Szukaj graczy</a><!--Przegladanie wszystkich ludzi lub szukanie po nicku lub filtrach-->
+        <a href="/logout">Wyloguj</a>
+        <a href="/profile/{{user.get_username}}">Profil</a><!--Profil użytkownika, w środku Modyfikacja wszystkiego co sie wyswietla w profilu-->
+        <a href="/changepassword">Zmień hasło</a>
+        <a href="/addgame">Dodaj nowy wniosek o gre</a><!--Lista zgloszen nowych gier twoich, mozliwosc dodania nowej(lista, zgloszenie, new zgloszenie)-->
+        <a href="/gamelist">Zobacz twoje wnioski o gry</a>
+        <a href="/games">Gry</a>
+        <a href="/friends">Znajomi</a><!--Lista znajomych z napisaniem do nich lub wywaleniem ze znaj lub pokaz profil-->
+        <a href="/friendrequests/{{user.id}}">Zaproszenia do znajomych</a><!--Zaproszenia do znaj-->
+        <!--<a href="#">Messages</a>Wiadomosci-->
+        {% if user.is_authenticated %}
+        {% load static %}
+            <a href="/profile/{{user.get_username}}">{{user.get_username}}</a>
+        {% else %}
+            <p>Nie jesteś zalogowany</p>
+        {% endif %}
     </div>
 
+    <div class="container my-5">
     {% block body %}{%endblock%}
+    </div>
+    <footer class="mt-auto">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2022 Copyright:
+            <a class="text-reset fw-bold" href="/about">MeetYourGamer.com</a>
+          </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

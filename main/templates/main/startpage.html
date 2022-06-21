@@ -5,6 +5,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'basestyle.css'%}" type="text/css">
     <link rel="icon" href="{% static '/img/favicon.ico'%}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     {%block head%}{%endblock%}
 
     <meta charset="UTF-8">
@@ -15,19 +17,28 @@
     <title>MeetYourGamer.com</title>
 </head>
 
-<body>
-    {% if user.is_authenticated %}
-        <h1>User: {{user.get_username}}</h1>
-    {% else %}
-        <h1>Nie jesteś zalogowany</h1>
-    {% endif %}
-    
-    {% block body%}
-    <div class="AboutLogin">
-        <h2>Log in to find your friends</h2>
-        <a class="ToLoginFromAbout" href="/login">Login</a>
+<body class="d-flex flex-column min-vh-100">
+    <div class="d-flex justify-content-end">
+        <h1 class="logo">Meet<span class="green">Your</span>Gamer.com</h1>
     </div>
-    {% endblock %}
+    <div class="container my-5 text-center">
+        {% block body%}
+        <div style="margin-top: 100px;"></div>
+        <div class="AboutLogin">
+            <h1>Zaloguj się, by znaleźć znajomych do grania!</h1>
+            <div style="margin-top: 40px;"></div>
+            <a class="ToLoginFromAbout" href="/login">Zaloguj</a>
+        </div>
+        {% endblock %}
+    </div>
+    <footer class="mt-auto">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2022 Copyright:
+            <a class="text-reset fw-bold" href="/about">MeetYourGamers.com</a>
+          </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

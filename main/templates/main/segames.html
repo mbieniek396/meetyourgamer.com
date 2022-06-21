@@ -13,8 +13,8 @@
         <h2>Game Picture</h2>
         <img class="gamePic" src="{{game.picture}}">
         <input name="picture" type="file" accept=".jpg, .png">
-        <button id="submitSE" type="submit" name="accept" value="accept">Zatwierdź</button>
-        <button type="submit" name="skip" value="skip">Anuluj</button>
+        <button id="submitSE" class="btn btn-outline-success" type="submit" name="accept" value="accept">Zatwierdź</button>
+        <button type="submit" class="btn btn-outline-secondary" name="skip" value="skip">Anuluj</button>
         <script type="text/javascript">
             document.getElementById('GameStaffTitleSE').value = "{{game.name}}";
             document.getElementById('rs').value = "{{game.ranking}}";
